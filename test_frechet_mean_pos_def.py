@@ -42,8 +42,8 @@ def geometric_mean_diagonals_analytic(diagonal_matrices):
 
     num_matrices = len(diagonal_matrices)
     dim = diagonal_matrices[0].shape[0]
-    multiplication = np.eye(diagonal_matrices[0].shape[0])
-    geometric_mean = np.eye(diagonal_matrices[0].shape[0])
+    multiplication = np.eye(dim)
+    geometric_mean = np.eye(dim)
 
     for  p in diagonal_matrices:
         multiplication = multiplication@ p
