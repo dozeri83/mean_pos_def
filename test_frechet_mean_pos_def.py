@@ -56,22 +56,26 @@ def geometric_mean_diagonals_analytic(diagonal_matrices):
 
 def test_frechet_mean_geometric_average_two_matrices():
     np.random.seed(8128)
-    a1 = generate_random_positive_matrix()
-    a2 = generate_random_positive_matrix()
+    num_tests=10
+    for i in range(num_tests):
+        a1 = generate_random_positive_matrix()
+        a2 = generate_random_positive_matrix()
 
-    sqrt_analytic = geometric_mean_analytic(a1, a2)
-    sqrt_numerical = frechet_mean([a1,a2])
+        sqrt_analytic = geometric_mean_analytic(a1, a2)
+        sqrt_numerical = frechet_mean([a1,a2])
 
 
-    assert np.linalg.norm(sqrt_analytic - sqrt_numerical) < 1e-5
+        assert np.linalg.norm(sqrt_analytic - sqrt_numerical) < 1e-5
 
 def test_frechet_mean_geometric_average_diagonals():
     np.random.seed(28)
-    num_matrices = 50
-    positive_matrices = []
-    for i in range(num_matrices):
-        positive_matrices.append(generate_random_positive_diagonal_matrix())
-    mean_numeric = frechet_mean(positive_matrices)
-    mean_analytic = geometric_mean_diagonals_analytic(positive_matrices)
+    num_tests=10
+    for i in range(num_tests):
+        num_matrices = 50
+        positive_matrices = []
+        for i in range(num_matrices):
+            positive_matrices.append(generate_random_positive_diagonal_matrix())
+        mean_numeric = frechet_mean(positive_matrices)
+        mean_analytic = geometric_mean_diagonals_analytic(positive_matrices)
 
-    assert np.linalg.norm(mean_numeric - mean_analytic) < 1e-5
+        assert np.linalg.norm(mean_numeric - mean_analytic) < 1e-5
