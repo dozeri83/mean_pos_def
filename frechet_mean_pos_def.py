@@ -7,7 +7,7 @@ import scipy.linalg
 import logging
 
 logging.basicConfig(level=logging.INFO)
-
+logger = logging.getLogger('frechet mean')
 
 def fisher_distance_s(p1,p2):
     '''
@@ -56,16 +56,16 @@ def frechet_mean(positive_matrices):
     max_learning_rate = 0.1
     learning_rate = max_learning_rate
     num_iters = 100
-    stop_cond_diff = 10**-8
+    stop_cond_diff = 10**-10
     mean = positive_matrices[1]
     inv_matrices = [np.linalg.inv(p) for p in positive_matrices]
 
     cost = cost_fisher(positive_matrices, mean)
-    logging.info(f"fisher cost before {cost}")
+    logger.info(f"fisher cost before {cost}")
 
     for i in range(num_iters):
         cost = cost_fisher(positive_matrices, mean)
-        logging.debug(f"fisher cost is {cost} lr {learning_rate}")
+        logger.debug(f"fisher cost is {cost} lr {learning_rate}")
 
         new_mean = np.copy(mean)
         sqrt_m = scipy.linalg.sqrtm(mean)
@@ -83,7 +83,11 @@ def frechet_mean(positive_matrices):
             learning_rate = min(max_learning_rate, learning_rate*1.5)
             mean = np.copy(new_mean)
 
+            if abs(new_cost-cost)<stop_cond_diff or diff<stop_cond_diff:
+                logger.debug(f"break iteration over small diff")
+                break
+
     cost = cost_fisher(positive_matrices, mean)
-    logging.info(f"fisher cost after {cost}")
+    logger.info(f"fisher cost after {cost}")
 
     return mean
