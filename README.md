@@ -1,4 +1,4 @@
-#Fréchet (Karcher) mean algorithm
+# Fréchet (Karcher) mean algorithm
 Python implementation of Fréchet mean algorithm on the space of Positive definite matrices
 
 Base on the algorithm that presented in the paper :
