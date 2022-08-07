@@ -55,10 +55,11 @@ def frechet_mean(positive_matrices):
     if len(positive_matrices)==0:
         raise Exception(f"input is empty")
 
-    max_learning_rate = 0.1
+    max_learning_rate = 0.5
+    min_learning_rate = 1e-13
     learning_rate = max_learning_rate
     num_iters = 200
-    stop_cond_diff = 10**-13
+    stop_cond_diff = 1e-13
     mean = positive_matrices[0]
     inv_matrices = [np.linalg.inv(p) for p in positive_matrices]
 
@@ -79,7 +80,7 @@ def frechet_mean(positive_matrices):
         new_cost = cost_fisher(positive_matrices, new_mean)
 
         if not is_pos_def(new_mean) or new_cost > cost:
-            learning_rate = learning_rate/2.0
+            learning_rate = max(min_learning_rate,learning_rate/2.0)
         else:
             diff = np.linalg.norm(new_mean-mean)
             learning_rate = min(max_learning_rate, learning_rate*1.5)
