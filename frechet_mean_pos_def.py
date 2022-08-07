@@ -41,7 +41,7 @@ def is_pos_def(x):
 def frechet_mean(positive_matrices):
     """
     Calculate the Frechet Mean according with Graditent Descent Algorithm.
-    Implementation can be found in
+    Explanation can be found in
     "Computing the Karcher mean of symmetric positive definite matrices. D.A. Bini 2013"
     :param positive_matrices: positive definite nxn matrices
     :return: the Freche Mean of the matrices. If fails return None
