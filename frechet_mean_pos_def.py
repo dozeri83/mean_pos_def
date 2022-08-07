@@ -57,8 +57,8 @@ def frechet_mean(positive_matrices):
 
     max_learning_rate = 0.1
     learning_rate = max_learning_rate
-    num_iters = 100
-    stop_cond_diff = 10**-10
+    num_iters = 200
+    stop_cond_diff = 10**-13
     mean = positive_matrices[0]
     inv_matrices = [np.linalg.inv(p) for p in positive_matrices]
 

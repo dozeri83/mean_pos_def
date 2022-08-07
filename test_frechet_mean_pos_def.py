@@ -8,14 +8,12 @@ import scipy.linalg
 import logging
 
 
-def generate_random_positive_matrix():
-    dim = 4
+def generate_random_positive_matrix(dim):
     l = np.random.random(size=(dim, dim))
     return l@l.T
 
 
-def generate_random_positive_diagonal_matrix():
-    dim = 10
+def generate_random_positive_diagonal_matrix(dim):
     p = np.zeros(shape=( dim, dim))
     for i in range(dim):
         p[i][i]= np.random.uniform(0,100)
@@ -58,8 +56,9 @@ def test_frechet_mean_geometric_average_two_matrices():
     np.random.seed(8128)
     num_tests=10
     for i in range(num_tests):
-        a1 = generate_random_positive_matrix()
-        a2 = generate_random_positive_matrix()
+        dim = np.random.randint(2,10)
+        a1 = generate_random_positive_matrix(dim)
+        a2 = generate_random_positive_matrix(dim)
 
         sqrt_analytic = geometric_mean_analytic(a1, a2)
         sqrt_numerical = frechet_mean([a1,a2])
@@ -71,10 +70,11 @@ def test_frechet_mean_geometric_average_diagonals():
     np.random.seed(28)
     num_tests=10
     for i in range(num_tests):
-        num_matrices = 50
+        dim = np.random.randint(2,10)
+        num_matrices = np.random.randint(2,30)
         positive_matrices = []
         for i in range(num_matrices):
-            positive_matrices.append(generate_random_positive_diagonal_matrix())
+            positive_matrices.append(generate_random_positive_diagonal_matrix(dim))
         mean_numeric = frechet_mean(positive_matrices)
         mean_analytic = geometric_mean_diagonals_analytic(positive_matrices)
 
