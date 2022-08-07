@@ -1,0 +1,9 @@
+name: frechet_mean
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8.8
+  - numpy
+  - scipy
+  - pytest
