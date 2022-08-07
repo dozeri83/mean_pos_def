@@ -52,12 +52,14 @@ def frechet_mean(positive_matrices):
             raise Exception("only support float matrices")
         if not is_pos_def(p):
             raise Exception(f"matrix {idx} is not positive definite")
+    if len(positive_matrices)==0:
+        raise Exception(f"input is empty")
 
     max_learning_rate = 0.1
     learning_rate = max_learning_rate
     num_iters = 100
     stop_cond_diff = 10**-10
-    mean = positive_matrices[1]
+    mean = positive_matrices[0]
     inv_matrices = [np.linalg.inv(p) for p in positive_matrices]
 
     cost = cost_fisher(positive_matrices, mean)
