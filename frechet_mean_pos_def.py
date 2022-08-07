@@ -65,7 +65,7 @@ def frechet_mean(positive_matrices):
 
     for i in range(num_iters):
         cost = cost_fisher(positive_matrices, mean)
-        logging.info(f"fisher cost is {cost} lr {learning_rate}")
+        logging.debug(f"fisher cost is {cost} lr {learning_rate}")
 
         new_mean = np.copy(mean)
         sqrt_m = scipy.linalg.sqrtm(mean)
