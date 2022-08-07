@@ -44,7 +44,7 @@ def frechet_mean(positive_matrices):
     Implementation can be found in
     "Computing the Karcher mean of symmetric positive definite matrices. D.A. Bini 2013"
     :param positive_matrices: positive definite nxn matrices
-    :return: the Freche Mean of the matrices
+    :return: the Freche Mean of the matrices. If fails return None
     """
 
     for idx, p in enumerate(positive_matrices):
@@ -86,6 +86,10 @@ def frechet_mean(positive_matrices):
             if abs(new_cost-cost)<stop_cond_diff or diff<stop_cond_diff:
                 logger.debug(f"break iteration over small diff")
                 break
+    
+    if i>=(num_iters-1):
+        logger.error(f"failed to converge")
+        return None
 
     cost = cost_fisher(positive_matrices, mean)
     logger.info(f"fisher cost after {cost}")
