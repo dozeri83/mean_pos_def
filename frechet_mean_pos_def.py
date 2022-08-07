@@ -77,14 +77,11 @@ def frechet_mean(positive_matrices):
         new_cost = cost_fisher(positive_matrices, new_mean)
 
         if not is_pos_def(new_mean) or new_cost > cost:
-            learning_rate = learning_rate/1.2
+            learning_rate = learning_rate/2.0
         else:
             diff = np.linalg.norm(new_mean-mean)
-            learning_rate = min(max_learning_rate, learning_rate*1.1)
+            learning_rate = min(max_learning_rate, learning_rate*1.5)
             mean = np.copy(new_mean)
-            # if diff<stop_cond_diff:
-            #     logging.info(f"fisher cost is {cost} reached stop condition")
-            #     break
 
     cost = cost_fisher(positive_matrices, mean)
     logging.info(f"fisher cost after {cost}")
