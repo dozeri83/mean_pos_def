@@ -1,5 +1,5 @@
-# Fréchet (Karcher) mean algorithm
-Python implementation of Fréchet mean algorithm on the space of Positive definite matrices
+# Fréchet (geometric) mean algorithm on the space P
+Python implementation of Fréchet mean algorithm on the space of positive definite matrices
 
 Based on the algorithm that presented in the paper:
 "Computing the Karcher mean of symmetric positive definite matrices". Binni & Lannazzo 2013
