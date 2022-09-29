@@ -1,4 +1,4 @@
-# Fréchet (geometric) mean algorithm on the space P
+# Fréchet (geometric) mean algorithm on the space SPD matrices
 Python implementation of Fréchet mean algorithm on the space of positive definite matrices with respect to Fisher-Rao metric (geometric mean).
 
 Based on the algorithm that presented in the paper:
